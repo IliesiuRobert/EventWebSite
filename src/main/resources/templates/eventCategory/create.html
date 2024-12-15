@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create Category</title>
+</head>
+<body>
+    <h1>Create a New Event Category</h1>
+    <form method="post" th:action="@{/eventCategory/create}" th:object="${eventCategory}">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+    <a href="/eventCategory">Back to Categories</a>
+</body>
+</html>

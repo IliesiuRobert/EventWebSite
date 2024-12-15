@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <style>
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px; /* Spatiu intre elemente */
+        }
+        .form-group label {
+            margin-left: 10px; /* Spatiu intre checkbox si numele evenimentului */
+        }
+        .btn-danger {
+            margin-top: 20px; /* Spatiu intre lista de evenimente si buton */
+            padding: 10px 20px; /* Dimensiune mai mare pentru buton */
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body class="container">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" action="/events/delete">
+    <th:block th:each="event : ${events}">
+        <div class="form-group">
+            <input type="checkbox" name="eventIds" th:value="${event.id}">
+            <label th:for="${'event-' + event.id}" th:text="${event.name}"></label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+
+</body>
+</html>
